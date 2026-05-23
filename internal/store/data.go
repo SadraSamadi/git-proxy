@@ -14,6 +14,6 @@ func getDefault() *Data {
 }
 
 func Validate(value string) bool {
-	pattern := regexp.MustCompile("^(http|socks5)://[a-zA-Z0-9._-]+(:\\d{1,5})?$")
+	pattern := regexp.MustCompile("^(http|socks5h?)://[a-zA-Z0-9._-]+(:\\d{1,5})?$")
 	return pattern.MatchString(value)
 }

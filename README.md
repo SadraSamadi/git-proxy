@@ -44,6 +44,6 @@ Usage:
   git-proxy current              Show the current git proxy
 ```
 
-Proxies are saved in a `proxies.json` file in the current working directory.
+Proxies are saved in a `data.json` file in the current working directory.
 
-Accepted proxy formats: `http://`, `socks5://`
+Accepted proxy formats: `http://`, `socks5://`, `socks5h://`
