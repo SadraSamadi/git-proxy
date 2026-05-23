@@ -40,8 +40,8 @@ Usage:
   git-proxy list                 List all saved proxies
   git-proxy remove <key>         Remove a saved proxy
   git-proxy use <key>            Configure git to use a saved proxy
-  git-proxy unset                Unset the current git proxy
   git-proxy current              Show the current git proxy
+  git-proxy unset                Unset the current git proxy
 ```
 
 Proxies are saved in a `data.json` file in the current working directory.

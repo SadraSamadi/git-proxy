@@ -48,10 +48,10 @@ func Use(key string) error {
 	return git.Configure(value)
 }
 
-func Unset() error {
-	return git.Unset()
-}
-
 func Current() (string, error) {
 	return git.Current()
+}
+
+func Unset() error {
+	return git.Unset()
 }

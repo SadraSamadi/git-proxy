@@ -6,7 +6,7 @@ type Data struct {
 	Proxies map[string]string `json:"proxies"`
 }
 
-func getDefault() *Data {
+func DefaultData() *Data {
 	data := &Data{
 		Proxies: map[string]string{},
 	}

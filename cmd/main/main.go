@@ -21,10 +21,10 @@ func main() {
 		remove()
 	case "use":
 		use()
-	case "unset":
-		unset()
 	case "current":
 		current()
+	case "unset":
+		unset()
 	default:
 		usage()
 	}
@@ -74,19 +74,19 @@ func use() {
 	}
 }
 
-func unset() {
-	err := app.Unset()
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
 func current() {
 	value, err := app.Current()
 	if err != nil {
 		log.Fatalln(err)
 	}
 	fmt.Println(value)
+}
+
+func unset() {
+	err := app.Unset()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func usage() {
@@ -97,8 +97,8 @@ Usage:
   git-proxy list                 List all saved proxies
   git-proxy remove <key>         Remove a saved proxy
   git-proxy use <key>            Configure git to use a saved proxy
-  git-proxy unset                Unset the current git proxy
   git-proxy current              Show the current git proxy
+  git-proxy unset                Unset the current git proxy
 `
 	fmt.Printf(msg)
 	os.Exit(0)
