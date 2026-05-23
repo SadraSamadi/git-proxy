@@ -100,6 +100,6 @@ Usage:
   git-proxy current              Show the current git proxy
   git-proxy unset                Unset the current git proxy
 `
-	fmt.Printf(msg)
+	fmt.Print(msg)
 	os.Exit(0)
 }

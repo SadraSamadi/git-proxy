@@ -15,7 +15,7 @@ type MockAdapter struct {
 	err   error
 }
 
-var _ store.DataAdaptor = (*MockAdapter)(nil)
+var _ store.DataAdapter = (*MockAdapter)(nil)
 
 func (a *MockAdapter) Read() ([]byte, error) {
 	return a.bytes, a.err

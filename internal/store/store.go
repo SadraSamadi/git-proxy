@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-var Adaptor DataAdaptor = &JsonAdapter{"data.json"}
+var Adaptor DataAdapter = &JsonAdapter{"data.json"}
 
 func Read() (*Data, error) {
 	data := DefaultData()

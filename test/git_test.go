@@ -14,7 +14,7 @@ type MockRunner struct {
 
 var _ git.CommandRunner = (*MockRunner)(nil)
 
-func (r *MockRunner) Run(name string, args ...string) (string, error) {
+func (r *MockRunner) Run(_ string, _ ...string) (string, error) {
 	return r.out, r.err
 }
 

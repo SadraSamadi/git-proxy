@@ -2,7 +2,7 @@
 
 A tiny CLI for managing and switching git proxies.
 
-Save proxies by name, switch between them instantly, and keep your git config clean — all from one command.
+Save proxies by name, switch between them instantly, and keep the git config clean, all from one command.
 
 ---
 
