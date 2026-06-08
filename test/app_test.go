@@ -30,11 +30,11 @@ func TestSave(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	data, err := store.Read()
+	config, err := store.Read()
 	if err != nil {
 		t.Fatal(err)
 	}
-	if v, ok := data.Proxies["k"]; !ok || v != proxy {
+	if v, ok := config.Proxies["k"]; !ok || v != proxy {
 		t.Errorf("want k=%s, got k=%s", proxy, v)
 	}
 }
@@ -56,11 +56,11 @@ func TestRemove(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	data, err := store.Read()
+	config, err := store.Read()
 	if err != nil {
 		t.Fatal(err)
 	}
-	if v, ok := data.Proxies["k"]; ok || v != "" {
+	if v, ok := config.Proxies["k"]; ok || v != "" {
 		t.Errorf("want k=<empty>, got k=%s", v)
 	}
 }

@@ -5,28 +5,28 @@ import (
 	"os"
 )
 
-var Adaptor DataAdapter = &JsonAdapter{"data.json"}
+var Adapter ConfigAdapter = &JsonAdapter{"config.json"}
 
-func Read() (*Data, error) {
-	data := DefaultData()
-	bytes, err := Adaptor.Read()
+func Read() (*Config, error) {
+	config := DefaultConfig()
+	bytes, err := Adapter.Read()
 	if err != nil {
 		if os.IsNotExist(err) {
-			return data, nil
+			return config, nil
 		}
 		return nil, err
 	}
-	err = json.Unmarshal(bytes, &data)
+	err = json.Unmarshal(bytes, &config)
 	if err != nil {
 		return nil, err
 	}
-	return data, nil
+	return config, nil
 }
 
-func Write(data *Data) error {
-	bytes, err := json.MarshalIndent(data, "", "  ")
+func Write(config *Config) error {
+	bytes, err := json.MarshalIndent(config, "", "  ")
 	if err != nil {
 		return err
 	}
-	return Adaptor.Write(bytes)
+	return Adapter.Write(bytes)
 }

@@ -2,15 +2,15 @@ package store
 
 import "regexp"
 
-type Data struct {
+type Config struct {
 	Proxies map[string]string `json:"proxies"`
 }
 
-func DefaultData() *Data {
-	data := &Data{
+func DefaultConfig() *Config {
+	config := &Config{
 		Proxies: map[string]string{},
 	}
-	return data
+	return config
 }
 
 func Validate(value string) bool {

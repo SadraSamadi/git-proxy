@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 )
 
-type DataAdapter interface {
+type ConfigAdapter interface {
 	Read() ([]byte, error)
 	Write(bytes []byte) error
 }
@@ -14,7 +14,7 @@ type JsonAdapter struct {
 	Name string
 }
 
-var _ DataAdapter = (*JsonAdapter)(nil)
+var _ ConfigAdapter = (*JsonAdapter)(nil)
 
 func (a *JsonAdapter) Read() ([]byte, error) {
 	file, err := a.getPath()

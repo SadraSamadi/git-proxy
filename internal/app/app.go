@@ -11,37 +11,37 @@ func Save(key, value string) error {
 	if !store.Validate(value) {
 		return errors.New("invalid value")
 	}
-	data, err := store.Read()
+	config, err := store.Read()
 	if err != nil {
 		return err
 	}
-	data.Proxies[key] = value
-	return store.Write(data)
+	config.Proxies[key] = value
+	return store.Write(config)
 }
 
 func List() (map[string]string, error) {
-	data, err := store.Read()
+	config, err := store.Read()
 	if err != nil {
 		return nil, err
 	}
-	return data.Proxies, nil
+	return config.Proxies, nil
 }
 
 func Remove(key string) error {
-	data, err := store.Read()
+	config, err := store.Read()
 	if err != nil {
 		return err
 	}
-	delete(data.Proxies, key)
-	return store.Write(data)
+	delete(config.Proxies, key)
+	return store.Write(config)
 }
 
 func Use(key string) error {
-	data, err := store.Read()
+	config, err := store.Read()
 	if err != nil {
 		return err
 	}
-	value, ok := data.Proxies[key]
+	value, ok := config.Proxies[key]
 	if !ok {
 		return errors.New("key not found")
 	}

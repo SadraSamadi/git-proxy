@@ -15,7 +15,7 @@ type MockAdapter struct {
 	err   error
 }
 
-var _ store.DataAdapter = (*MockAdapter)(nil)
+var _ store.ConfigAdapter = (*MockAdapter)(nil)
 
 func (a *MockAdapter) Read() ([]byte, error) {
 	return a.bytes, a.err
@@ -29,11 +29,11 @@ func (a *MockAdapter) Write(bytes []byte) error {
 func TestReadSuccess(t *testing.T) {
 	json := fmt.Sprintf(`{"proxies":{"k":"%s"}}`, proxy)
 	mockAdaptor(t, json, nil)
-	data, err := store.Read()
+	config, err := store.Read()
 	if err != nil {
 		t.Error(err)
 	}
-	if v, ok := data.Proxies["k"]; !ok || v != proxy {
+	if v, ok := config.Proxies["k"]; !ok || v != proxy {
 		t.Errorf("want k=%s, got k=%s", proxy, v)
 	}
 }
@@ -41,19 +41,19 @@ func TestReadSuccess(t *testing.T) {
 func TestReadFailure(t *testing.T) {
 	oops := errors.New("oops")
 	mockAdaptor(t, "", oops)
-	data, err := store.Read()
+	config, err := store.Read()
 	if err == nil {
 		t.Error("expected error")
 	}
-	if data != nil {
-		t.Error("data should be nil")
+	if config != nil {
+		t.Error("config should be nil")
 	}
 }
 
 func TestWriteSuccess(t *testing.T) {
 	mockAdaptor(t, "", nil)
-	data := store.DefaultData()
-	err := store.Write(data)
+	config := store.DefaultConfig()
+	err := store.Write(config)
 	if err != nil {
 		t.Error(err)
 	}
@@ -69,7 +69,7 @@ func TestWriteFailure(t *testing.T) {
 }
 
 func mockAdaptor(t *testing.T, json string, err error) {
-	original := store.Adaptor
-	t.Cleanup(func() { store.Adaptor = original })
-	store.Adaptor = &MockAdapter{[]byte(json), err}
+	original := store.Adapter
+	t.Cleanup(func() { store.Adapter = original })
+	store.Adapter = &MockAdapter{[]byte(json), err}
 }

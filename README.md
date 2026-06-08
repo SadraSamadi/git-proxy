@@ -18,7 +18,7 @@ git clone https://github.com/SadraSamadi/git-proxy.git
 cd git-proxy
 ```
 
-Unix:
+Mac & Linux:
 ```bash
 go build -o git-proxy ./cmd/main
 ```
@@ -44,6 +44,6 @@ Usage:
   git-proxy unset                Unset the current git proxy
 ```
 
-Proxies are saved in a `data.json` file in the current working directory.
+Proxies are saved in a `config.json` file in the current working directory.
 
 Accepted proxy formats: `http://`, `socks5://`, `socks5h://`
