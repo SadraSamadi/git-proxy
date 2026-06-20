@@ -1,6 +1,8 @@
 package store
 
-import "regexp"
+import (
+	"regexp"
+)
 
 type Config struct {
 	Proxies map[string]string `json:"proxies"`

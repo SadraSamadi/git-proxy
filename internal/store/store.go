@@ -1,11 +1,11 @@
 package store
 
 import (
-	"encoding/json"
 	"os"
 )
 
-var Adapter ConfigAdapter = &JsonAdapter{"config.json"}
+var Formatter ConfigFormatter = &JsonFormatter{}
+var Adapter ConfigAdapter = &FileAdapter{"config.json"}
 
 func Read() (*Config, error) {
 	config := DefaultConfig()
@@ -16,7 +16,7 @@ func Read() (*Config, error) {
 		}
 		return nil, err
 	}
-	err = json.Unmarshal(bytes, &config)
+	err = Formatter.Decode(bytes, config)
 	if err != nil {
 		return nil, err
 	}
@@ -24,7 +24,7 @@ func Read() (*Config, error) {
 }
 
 func Write(config *Config) error {
-	bytes, err := json.MarshalIndent(config, "", "  ")
+	bytes, err := Formatter.Encode(config)
 	if err != nil {
 		return err
 	}

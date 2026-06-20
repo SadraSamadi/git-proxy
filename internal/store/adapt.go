@@ -10,13 +10,13 @@ type ConfigAdapter interface {
 	Write(bytes []byte) error
 }
 
-type JsonAdapter struct {
+type FileAdapter struct {
 	Name string
 }
 
-var _ ConfigAdapter = (*JsonAdapter)(nil)
+var _ ConfigAdapter = (*FileAdapter)(nil)
 
-func (a *JsonAdapter) Read() ([]byte, error) {
+func (a *FileAdapter) Read() ([]byte, error) {
 	file, err := a.getPath()
 	if err != nil {
 		return nil, err
@@ -24,7 +24,7 @@ func (a *JsonAdapter) Read() ([]byte, error) {
 	return os.ReadFile(file)
 }
 
-func (a *JsonAdapter) Write(bytes []byte) error {
+func (a *FileAdapter) Write(bytes []byte) error {
 	file, err := a.getPath()
 	if err != nil {
 		return err
@@ -32,7 +32,7 @@ func (a *JsonAdapter) Write(bytes []byte) error {
 	return os.WriteFile(file, bytes, 0644)
 }
 
-func (a *JsonAdapter) getPath() (string, error) {
+func (a *FileAdapter) getPath() (string, error) {
 	dir, err := os.Getwd()
 	if err != nil {
 		return "", err
